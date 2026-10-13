@@ -119,8 +119,8 @@ Jangan pernah memberi awalan `NEXT_PUBLIC_` pada nilai rahasia — awalan itu me
 
 ## Menyiapkan Supabase
 
-1. Buka <https://supabase.com/dashboard> → **New project**. Disarankan project terpisah dari BMS agar data dan
-   akses admin terisolasi. (Nama tabel tidak bentrok dengan BMS, jadi satu project juga bisa.)
+1. Buka <https://supabase.com/dashboard> → **New project**. Disarankan project terpisah dari BMS Kalaatma agar
+   data dan akses admin terisolasi. (Nama tabel tidak bentrok dengan BMS, jadi satu project juga bisa.)
 2. **Project Settings → API** (atau **API Keys**):
    - *Project URL* → `NEXT_PUBLIC_SUPABASE_URL`
    - *anon / publishable key* → `NEXT_PUBLIC_SUPABASE_ANON_KEY`
@@ -128,7 +128,7 @@ Jangan pernah memberi awalan `NEXT_PUBLIC_` pada nilai rahasia — awalan itu me
 3. Jalankan migrasi, pilih salah satu:
    - **SQL Editor**: buka **SQL Editor → New query**, tempel isi
      `supabase/migrations/20261013000000_initial_schema.sql`, lalu **Run**.
-   - **Supabase CLI** (dari folder `photo-selection`): `npx supabase init` (sekali, membuat
+   - **Supabase CLI** (dari root repo): `npx supabase init` (sekali, membuat
      `supabase/config.toml`), `npx supabase login`, `npx supabase link --project-ref <PROJECT_REF>`,
      lalu `npx supabase db push`.
 4. Cek di **Table Editor**: lima tabel di atas muncul dengan label RLS aktif.
@@ -143,6 +143,7 @@ Jangan pernah memberi awalan `NEXT_PUBLIC_` pada nilai rahasia — awalan itu me
 Butuh Node.js 20.9 atau lebih baru.
 
 ```bash
+git clone https://github.com/kalaatmapictures/photo-selection.git
 cd photo-selection
 npm install
 cp .env.example .env.local   # lalu isi nilainya
@@ -175,16 +176,15 @@ npm run db:test     # uji skema di PostgreSQL lokal (lihat di bawah)
 ## Commit, push, dan deploy ke Vercel
 
 ```bash
-git add photo-selection
+git add .
 git commit -m "Pesan commit"
 git push -u origin <nama-branch>
 ```
 
 Deploy awal:
 
-1. <https://vercel.com/new> → **Import** repository `web-admin-booking`.
-2. **Root Directory**: pilih `photo-selection` (wajib — root repo berisi aplikasi BMS).
-   Framework terdeteksi otomatis sebagai Next.js.
+1. <https://vercel.com/new> → **Import** repository `photo-selection`.
+2. Framework terdeteksi otomatis sebagai Next.js; Root Directory biarkan default (`./`).
 3. **Environment Variables**: isi `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`,
    `SUPABASE_SERVICE_ROLE_KEY`, dan `NEXT_PUBLIC_APP_URL` (alamat Vercel/domain Anda).
 4. **Deploy**, lalu buka `https://<domain>/api/health` dan pastikan `"ok": true`.
