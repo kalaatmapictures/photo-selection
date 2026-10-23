@@ -16,6 +16,13 @@ Next.js 16 (App Router) · TypeScript · Tailwind CSS 4 · Supabase (PostgreSQL 
 | 4 | Galeri klien (pilih foto, kuota real time) | Belum |
 | 5 | Finalisasi (submit, CSV, kunci/buka seleksi) | Belum |
 
+## Demo galeri
+
+`/demo` adalah pratinjau tampilan galeri klien dengan **data contoh** (36 foto dari picsum.photos, kuota 10).
+Bukan dari Google Drive dan tidak memakai database: aturan kuota dijalankan di browser dan pilihan disimpan di
+`localStorage`. Komponen galerinya (`src/components/gallery/`) akan dipakai ulang di Tahap 4 dengan data dan
+aturan dari server.
+
 ## Arsitektur
 
 ```
